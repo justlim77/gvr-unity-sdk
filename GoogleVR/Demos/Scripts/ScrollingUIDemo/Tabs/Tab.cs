@@ -16,9 +16,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-#if UNITY_HAS_GOOGLEVR && (UNITY_ANDROID || UNITY_EDITOR)
 [RequireComponent(typeof(Toggle))]
 public class Tab : MonoBehaviour {
+#if UNITY_HAS_GOOGLEVR && (UNITY_ANDROID || UNITY_EDITOR)
   /// The prefab to use for this tab's page.
   [Tooltip("The prefab for this tab's page.")]
   [SerializeField]
@@ -109,9 +109,6 @@ public class Tab : MonoBehaviour {
     //  in case SetOpen was called directly.
     toggle.isOn = open;
 
-    // Toggle shouldn't be interactble when it is on.
-    toggle.interactable = !open;
-
     EventTrigger eventTrigger = GetComponent<EventTrigger>();
     if (eventTrigger != null) {
       eventTrigger.enabled = !open;
@@ -156,5 +153,6 @@ public class Tab : MonoBehaviour {
   private IUITransition FindTransition() {
     return GetComponent<IUITransition>();
   }
-}
+
 #endif  // UNITY_HAS_GOOGLEVR &&(UNITY_ANDROID || UNITY_EDITOR
+}

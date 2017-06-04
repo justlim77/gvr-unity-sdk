@@ -1,4 +1,6 @@
-﻿// Copyright 2014 Google Inc. All rights reserved.
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+// Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -58,8 +60,8 @@ Category {
 
 			    output.uv = vertex.texcoord;
 			    output.position = undistort(vertex.position);
-			    half3 worldNormal = mul(_Object2World, half4(vertex.normal.xyz,0)).xyz;
-			    half3 worldPosition  = mul(_Object2World, half4(vertex.position.xyz,1)).xyz;
+			    half3 worldNormal = mul(unity_ObjectToWorld, half4(vertex.normal.xyz,0)).xyz;
+			    half3 worldPosition  = mul(unity_ObjectToWorld, half4(vertex.position.xyz,1)).xyz;
 			    half3 cameraVector = normalize(worldPosition - _WorldSpaceCameraPos); 
 			    output.color = _Color.rgb*_Color.a*saturate(-0.1-dot(worldNormal, cameraVector));
 

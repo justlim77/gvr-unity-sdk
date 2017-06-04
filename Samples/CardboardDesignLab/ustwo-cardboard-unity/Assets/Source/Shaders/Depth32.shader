@@ -1,4 +1,7 @@
-﻿// Copyright 2014 Google Inc. All rights reserved.
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+// Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -52,7 +55,7 @@ Category {
 			{
 			    VertexToFragment output;
 			   // output.worldPosition = mul (_Object2World, vertex.position).xyz;
-			    output.position = mul (UNITY_MATRIX_MVP, vertex.position);
+			    output.position = UnityObjectToClipPos (vertex.position);
 			    output.pos = output.position/output.position.w;
 			    return output;
 			};
@@ -123,11 +126,11 @@ Category {
 			VertexToFragment VertexProgram (VertexInput vertex)
 			{
 			    VertexToFragment output;
-			    float3 worldNormal = mul(_Object2World, float4(vertex.normal,0)).xyz;
+			    float3 worldNormal = mul(unity_ObjectToWorld, float4(vertex.normal,0)).xyz;
 			    float4 pos = vertex.position;
 			    pos.xyz = pos.xyz*(1.0-_Explosion) + worldNormal*(_Explosion);
 			   // output.worldPosition = mul (_Object2World, vertex.position).xyz;
-			    output.position = mul (UNITY_MATRIX_MVP, pos);
+			    output.position = UnityObjectToClipPos (pos);
 			    output.pos = output.position/output.position.w;
 			    return output;
 			};

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -83,7 +85,7 @@ Shader "Custom/UI/Sin Wave Font" {
 				v2f o;
 				
 				float4 vPos = MapCoordinate(v.vertex);
-				o.vertex = mul(UNITY_MATRIX_MVP, vPos);
+				o.vertex = UnityObjectToClipPos(vPos);
 				o.color = v.color * _Color;
 				o.texcoord = TRANSFORM_TEX(v.texcoord, _MainTex);
 #ifdef UNITY_HALF_TEXEL_OFFSET

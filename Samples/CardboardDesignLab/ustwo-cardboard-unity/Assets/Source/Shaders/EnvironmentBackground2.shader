@@ -1,3 +1,6 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -69,9 +72,9 @@ Category {
 			{
 			    VertexToFragment output;
 			    //output.position = undistort(vertex.position);
-			    output.position = mul (UNITY_MATRIX_MVP, vertex.position);
+			    output.position = UnityObjectToClipPos (vertex.position);
 
-			    float4 worldPosition = mul (_Object2World,vertex.position);
+			    float4 worldPosition = mul (unity_ObjectToWorld,vertex.position);
 			    float3 pointVector = worldPosition.xyz - _WorldSpaceCameraPos;
 			    float distanceToCamera = length(pointVector);
 			    float3 normVector = pointVector / (distanceToCamera+0.0001);

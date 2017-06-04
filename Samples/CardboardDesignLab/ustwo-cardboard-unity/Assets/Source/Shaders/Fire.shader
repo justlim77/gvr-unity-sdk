@@ -1,4 +1,6 @@
-﻿// Copyright 2014 Google Inc. All rights reserved.
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+// Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -102,7 +104,7 @@ Category {
 			    	}
 
 			    }
-			    half3 worldPosition = mul(_Object2World, vertex.position).xyz;
+			    half3 worldPosition = mul(unity_ObjectToWorld, vertex.position).xyz;
 
 
 			    half3 pointVector = worldPosition.xyz - _WorldSpaceCameraPos;
@@ -111,7 +113,7 @@ Category {
 			    half3 normVector = pointVector / (distanceToCamera+0.0001);
 
 
-			    half3 worldNormal = normalize(mul(_Object2World, half4(vertex.normal,0)).xyz);
+			    half3 worldNormal = normalize(mul(unity_ObjectToWorld, half4(vertex.normal,0)).xyz);
 			    //half3 pointRay = normalize(vertex.position.xyz);
 			    half dotP = ( dot(worldNormal, normVector) + 1 ) ;
 

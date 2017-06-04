@@ -1,4 +1,6 @@
-﻿// Copyright 2014 Google Inc. All rights reserved.
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+// Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -59,7 +61,7 @@ Category {
 
 			    output.uv = vertex.texcoord;
 
-			    half3 worldPosition = mul(_Object2World, vertex.position).xyz;
+			    half3 worldPosition = mul(unity_ObjectToWorld, vertex.position).xyz;
 			    half3 worldVector = normalize(worldPosition - _WorldSpaceCameraPos.xyz);
 
 			    output.color = half4(1,1,1, saturate( 2*asin(worldVector.y)/(0.5*3.1415926) ) );

@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
 // Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -85,7 +87,7 @@ Shader "Custom/UI/Cylinder"
 				v2f OUT;
 				
 				float4 vPos = MapCoordinate(IN.vertex);
-				OUT.vertex = mul(UNITY_MATRIX_MVP, vPos);
+				OUT.vertex = UnityObjectToClipPos(vPos);
 				OUT.texcoord = IN.texcoord;
 #ifdef UNITY_HALF_TEXEL_OFFSET
 				OUT.vertex.xy -= (_ScreenParams.zw-1.0);

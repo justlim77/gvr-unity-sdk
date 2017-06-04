@@ -1,4 +1,6 @@
-﻿// Copyright 2014 Google Inc. All rights reserved.
+﻿// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
+// Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -56,7 +58,7 @@ Category {
 			VertexToFragment VertexProgram (VertexInput vertex)
 			{
 			    VertexToFragment output;
-			    output.worldPosition = mul (_Object2World, vertex.position).xyz;
+			    output.worldPosition = mul (unity_ObjectToWorld, vertex.position).xyz;
 			    output.uv = vertex.texcoord;
 
 			    half noiseTex = tex2D(_Noise, vertex.texcoord + half2(_Time.x, _Time.x)).a;

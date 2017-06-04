@@ -1,3 +1,5 @@
+// Upgrade NOTE: replaced '_Object2World' with 'unity_ObjectToWorld'
+
 // Copyright 2014 Google Inc. All rights reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -112,14 +114,14 @@ Category {
 
 			    vertex.normal.y += _NormalScale*(1+sin(_Speed*_Time.y - 10*vertex.normal.x+ 10*vertex.normal.z));
 			    vertex.normal.xyz = normalize(vertex.normal.xyz);
-			    float3 worldNormal = normalize(mul(_Object2World, float4(vertex.normal,0)).xyz);
+			    float3 worldNormal = normalize(mul(unity_ObjectToWorld, float4(vertex.normal,0)).xyz);
 
 
 			    output.NDotL_Rim.xyz = (_PrimaryLightColor.a*saturate(0.5 * dot(worldNormal, _PrimaryLightDirection) + 0.5))*_PrimaryLightColor.rgb;
 			    //output.polarNormal = half2((atan2(worldNormal.z, worldNormal.x) / (2 * 3.1415926) ) + 0.5, asin(worldNormal.y)/(3.1415926) + 0.5);
 
 
-			    float4 worldPosition = mul (_Object2World,vertex.position);
+			    float4 worldPosition = mul (unity_ObjectToWorld,vertex.position);
 			    float3 pointVector = worldPosition.xyz - _WorldSpaceCameraPos;
 			    float distanceToCamera = length(pointVector);
 			    float3 normVector = pointVector / (distanceToCamera+0.0001);
